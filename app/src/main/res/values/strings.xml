@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WeatherApplication</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="find_button">Cherchez le lieu saisie</string>
+    <string name="add_button">Ajoutez ce lieu</string>
+    <string name="town_name_edit_text_hint">Entrez un nom de lieu</string>
+</resources>
