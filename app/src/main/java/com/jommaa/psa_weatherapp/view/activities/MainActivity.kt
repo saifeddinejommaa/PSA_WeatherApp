@@ -1,5 +1,6 @@
 package com.jommaa.psa_weatherapp.view
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -34,8 +35,15 @@ class MainActivity :  BaseActivity() {
                   is DataResult.TownsListResult -> {
                       progressBar1.visibility = View.INVISIBLE
                       result.list?.let {
+                          if(it.size==0){
+                              empty_message_txt.visibility=View.VISIBLE
+                          }
+                          else{
+                              empty_message_txt.visibility=View.INVISIBLE
                           (mPager.adapter as ScreenSlidePagerAdapter).setTwonsList(it)
+                          }
                       }
+
 
                   }
                   is DataResult.Failure -> {

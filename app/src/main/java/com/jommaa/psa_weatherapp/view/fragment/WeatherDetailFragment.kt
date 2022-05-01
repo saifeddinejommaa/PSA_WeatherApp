@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jommaa.psa_weatherapp.domain.entities.Current
@@ -18,7 +19,6 @@ import com.jommaa.psa_weatherapp.adapters.HourlyWeatherAdapter
 import com.jommaa.psa_weatherapp.utils.WeatherUtilities
 import com.jommaa.psa_weatherapp.viewmodel.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 @AndroidEntryPoint
@@ -59,16 +59,21 @@ class WeatherDetailFragment(val town: Town?): Fragment() {
                     result.details?.let {
                         bindWeatherDetails(it)
                         bindHourlyWeatherList(it.hourly)
+                        saveWeatherDetails(it)
                     }
 
                 }
                 is DataResult.Failure -> {
-
+                    town?.let { vm.getLocalWeatherDetails(it.id) }
                 }
             }
 
         })
 
+    }
+
+    fun saveWeatherDetails(weatherDetails: WeatherDetails){
+            vm.insertWeatherDetails(weatherDetails)
     }
 
     private fun bindWeatherDetails(details: WeatherDetails){
@@ -81,7 +86,7 @@ class WeatherDetailFragment(val town: Town?): Fragment() {
     private fun bindCurrentWeather (current: Current){
         temp_txt.text= Math.round(current.temp).toString()+"°"
         current.weather?.let{
-            currentweather_image.setImageResource(WeatherUtilities.getWeatherIcon(current.weather[0].icon))
+            currentweather_image.setImageResource(WeatherUtilities.getWeatherIcon(it[0].icon))
         }
     }
     private fun bind(){

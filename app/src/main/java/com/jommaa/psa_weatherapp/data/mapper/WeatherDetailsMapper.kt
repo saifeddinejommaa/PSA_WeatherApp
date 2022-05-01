@@ -7,13 +7,13 @@ import javax.inject.Inject
 
 class WeatherDetailsMapper  @Inject constructor(val currentMapper : CurrentMapper, val minutelyMapper: MinutelyMapper ) {
 
-    fun toWeatherDetails(resp:WeatherDetailsResponse): WeatherDetails{
+    fun toWeatherDetails(townId:Int,resp:WeatherDetailsResponse): WeatherDetails{
         return WeatherDetails( resp.lat,
             resp.lon,
             resp.timezone,
             resp.timezoneOffset,
             resp.current?.let{currentMapper.toCurrent(resp.current!!)},
             resp.minutely?.map { minutelyMapper.toMinutely(it) },
-            resp.hourly?.map { currentMapper.toCurrent(it) })
+            resp.hourly?.map { currentMapper.toCurrent(it) },townId)
     }
 }

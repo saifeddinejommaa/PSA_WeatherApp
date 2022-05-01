@@ -24,7 +24,7 @@ class AddNewTownActivity  : BaseActivity() {
         val resultObserver=Observer<Town>{ town ->
             city_name_result_content_txt.text=town.name
             city_lat_result_content_txt.text = town.lat.toString()
-            city_lat_result_content_txt.text = town.lon.toString()
+            city_lng_result_content_txt.text = town.lon.toString()
         }
 
         vm.result.observe(this,resultObserver)

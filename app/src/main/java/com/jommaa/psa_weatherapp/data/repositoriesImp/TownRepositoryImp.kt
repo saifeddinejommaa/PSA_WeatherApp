@@ -19,7 +19,7 @@ class TownRepositoryImp @Inject constructor(private val townMapper: TownMapper, 
         dataSource.insertTown(town)
      }  
 
-    override  fun getAllTowns(): LiveData<DataResult> {
+    override  fun   getAllTowns(): LiveData<DataResult> {
         try {
 
             val data: LiveData<List<Town>> = dataSource.getAllTowns()

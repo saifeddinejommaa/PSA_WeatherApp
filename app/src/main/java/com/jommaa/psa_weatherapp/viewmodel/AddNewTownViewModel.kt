@@ -12,6 +12,7 @@ import com.jommaa.psa_weatherapp.domain.usecases.TownUseCases
 import com.jommaa.psa_weatherapp.INavigationHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.StringBuilder
 import java.util.*
@@ -53,7 +54,7 @@ class AddNewTownViewModel @Inject constructor(val townsUseCases: TownUseCases, @
         fun addNewTown(){
         isAddTownButtonVisible = false
         newTown?.let {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 townsUseCases.addNewTown(it)
             }
         }

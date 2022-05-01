@@ -7,10 +7,10 @@ import javax.inject.Inject
 
 open class WeatherMapper  @Inject constructor() {
 
-    fun toWeather(resp:WeatherResponse):Weather{
-        return Weather(resp.id,
+    fun toWeather(parentId: Int,resp:WeatherResponse):Weather{
+        return Weather(0,resp.id,
             resp.main,
             resp.description,
-            resp.icon)
+            resp.icon,parentId)
     }
 }

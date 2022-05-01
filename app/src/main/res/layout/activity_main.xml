@@ -2,18 +2,31 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-<androidx.viewpager.widget.ViewPager
-    android:id="@+id/pager"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-48dp">
 
-</androidx.viewpager.widget.ViewPager>
+    </androidx.viewpager.widget.ViewPager>
 
+    <TextView
+        android:id="@+id/empty_message_txt"
+        android:layout_width="wrap_content"
+        android:text="Pas de lieu dans votre liste"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/pager"
+        app:layout_constraintEnd_toEndOf="@+id/pager"
+        app:layout_constraintStart_toStartOf="@+id/pager"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"

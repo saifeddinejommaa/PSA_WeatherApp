@@ -6,10 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.jommaa.psa_weatherapp.domain.entities.Town
 import com.jommaa.datacomponent.db.dao.TownDao
+import com.jommaa.psa_weatherapp.db.dao.CurrentDAO
+import com.jommaa.psa_weatherapp.db.dao.WeatherDAO
+import com.jommaa.psa_weatherapp.db.dao.WeatherDetailsDao
+import com.jommaa.psa_weatherapp.domain.entities.Current
+import com.jommaa.psa_weatherapp.domain.entities.Weather
+import com.jommaa.psa_weatherapp.domain.entities.WeatherDetails
 
-@Database(entities = arrayOf(Town::class), version = 1)
+@Database(entities = arrayOf(Town::class,WeatherDetails::class,Current::class,Weather::class), version = 1)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun TownDao(): TownDao
+        abstract fun WeatherDetailsDao(): WeatherDetailsDao
+        abstract fun CurrentDAO(): CurrentDAO
+        abstract fun WeatherDAO(): WeatherDAO
         companion object {
         @Volatile private var instance: AppDatabase? = null
         private val LOCK = Any()
